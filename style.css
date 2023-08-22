@@ -3,33 +3,35 @@
     --original-color: rgb(100, 164, 176);   
 }
 
-body, html {
+body,
+html,
+*::after,
+*::before
+ {
     box-sizing: border-box;
     height: 100%;
     margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: center;
+    place-items: center;
     flex-direction: column;
-}
-
-#container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    height: 100vh;
+    gap: 30px;
 }
 
 #etchContainer{
-    display: grid;
-    grid-template-columns: repeat(var(--grid-numb), minmax(30px, auto));    /* --grid-numb variable is used to dynamically change the amount of rows and columns to output.  */
-    grid-template-rows: repeat(var(--grid-numb), minmax(30px, auto));
+    display: inline-grid;
+    grid-template-columns: repeat(var(--grid-numb), 2fr);    /* --grid-numb variable is used to dynamically change the amount of rows and columns to output.  */
+    grid-template-rows: repeat(var(--grid-numb), 2fr);
+    height: 700px;
+    width: 700px;
 }
 
 
 .etchElement {
    border: 1px solid gray ;
    background-color: var(--original-color);  /* Here the variable is in use */
+   height: 100%;
+   width: 100%;
 }
 
 @media (max-width: 875px) or (max-height: 500px) {
