@@ -1,42 +1,39 @@
 /* Here I am making a 'var' variable to store the original color of the square. For reuse after the 'mouseenter' event. */
 :root {
-    --original-color: rgb(68, 39, 39);
+    --original-color: rgb(100, 164, 176);   
 }
 
 body, html {
     box-sizing: border-box;
     height: 100%;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #container {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
     height: 100vh;
 }
 
-.divRows {
-    display: flex;
+#etchContainer{
+    display: grid;
+    grid-template-columns: repeat(var(--grid-numb), minmax(30px, auto));    /* --grid-numb variable is used to dynamically change the amount of rows and columns to output.  */
+    grid-template-rows: repeat(var(--grid-numb), minmax(30px, auto));
 }
+
 
 .etchElement {
    border: 1px solid gray ;
-   height: 35px;
-   width: 35px;
    background-color: var(--original-color);  /* Here the variable is in use */
 }
 
-@media (max-width: 875px) {
-    .etchElement {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-@media (max-height: 500px) {
-    .etchElement {
-        width: 20px;
-        height: 20px;
-    }
-}
+@media (max-width: 875px) or (max-height: 500px) {
+    #etchContainer{
+        grid-template-columns: repeat(16, 20px);
+        grid-template-rows: repeat(16, 20px);
+    }}
