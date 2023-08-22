@@ -1,4 +1,4 @@
-/* Here I am making a 'var' variable to store the original color of the square. For reuse after the 'mouseenter' event. */
+/* Here I am making a 'var' variable to store the original color of the square. For reuse after the 'mouseover' event. */
 :root {
     --original-color: rgb(100, 164, 176);   
 }
@@ -18,14 +18,31 @@ html,
     gap: 30px;
 }
 
-#etchContainer{
-    display: inline-grid;
-    grid-template-columns: repeat(var(--grid-numb), 2fr);    /* --grid-numb variable is used to dynamically change the amount of rows and columns to output.  */
-    grid-template-rows: repeat(var(--grid-numb), 2fr);
-    height: 700px;
-    width: 700px;
+.header{
+    display: flex;
+    padding-top: 20px;
+    gap: 10px;
 }
 
+body {
+    background-color: rgb(74, 99, 68);
+}
+
+button {
+    background-color: rgb(173, 189, 169);
+    border-radius: 8px;
+    border: none;
+    padding: 8px 20px;
+}
+
+#etchContainer{
+    display: inline-grid;
+    grid-template-columns: repeat(16, 2fr);   
+    grid-template-rows: repeat(16, 2fr);                 
+    height: 700px;
+    width: 700px;
+    border: medium ridge black;
+}
 
 .etchElement {
    border: 1px solid gray ;
@@ -34,8 +51,14 @@ html,
    width: 100%;
 }
 
-@media (max-width: 875px) or (max-height: 500px) {
+@media (max-width: 750px) or (max-height: 500px) {
     #etchContainer{
-        grid-template-columns: repeat(16, 20px);
-        grid-template-rows: repeat(16, 20px);
+        height: 500px;
+        width: 500px;
+    }}
+
+@media (max-width: 500px) or (max-height: 500px) {
+    #etchContainer{
+        height: 350px;
+        width: 350px;
     }}
