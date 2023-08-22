@@ -67,7 +67,8 @@ resetButton.addEventListener('click', () => {
             } else if (dimensionSize < 2)  {
                 alert('Please enter a number greater than 1!')
                 dimensionSize = prompt(`Please enter a dimension you would like to see: `)
-            } else { dimensionSize = prompt(`Please enter a dimension you would like to see: `)}
+            } else { alert('Please enter only numbers.')
+                dimensionSize = prompt(`Please enter a dimension you would like to see: `)}
         }
         });
         
