@@ -73,38 +73,27 @@ dimensionButton.addEventListener('click', () => {
 });
       
 
-let squareSize = dimensionSize;
-let isDrawing = false;
+gridContainer.addEventListener("touchstart", touch2Mouse, true);
+gridContainer.addEventListener("touchmove", touch2Mouse, true);
+gridContainer.addEventListener("touchend", touch2Mouse, true);
 
-gridContainer.addEventListener('touchstart', startDrawing);
-gridContainer.addEventListener('touchmove', draw);
-gridContainer.addEventListener('touchend', stopDrawing);
 
-function startDrawing(event) {
-  isDrawing = true;
-  draw(event); // Start drawing immediately on touchstart
-}
+function touch2Mouse(e)
+{
+  var theTouch = e.changedTouches[0];
+  var mouseEv;
 
-function draw(event) {
-  if (!isDrawing) return;
-
-  event.preventDefault();
-
-  const touch = event.touches[0] || event.changedTouches[0];; // Get the first touch (assuming one finger)
-  const rect = gridContainer.getBoundingClientRect();
-
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
-
-  const col = Math.floor(x / squareSize);
-  const row = Math.floor(y / squareSize);
-
-  const square = gridContainer.children[row * dimensionSize + col];
-  if (square) {
-    square.style.backgroundColor = randomRGB();
+  switch(e.type)
+  {
+    case "touchstart": mouseEv="mousedown"; break;  
+    case "touchend":   mouseEv="mouseup"; break;
+    case "touchmove":  mouseEv="mousemove"; break;
+    default: return;
   }
-}
 
-function stopDrawing() {
-  isDrawing = false;
+  var mouseEvent = document.createEvent("MouseEvent");
+  mouseEvent.initMouseEvent(mouseEv, true, true, window, 1, theTouch.screenX, theTouch.screenY, theTouch.clientX, theTouch.clientY, false, false, false, false, 0, null);
+  theTouch.target.dispatchEvent(mouseEvent);
+
+  e.preventDefault();
 }
