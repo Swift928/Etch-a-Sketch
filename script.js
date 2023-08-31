@@ -90,7 +90,7 @@ function draw(event) {
 
   event.preventDefault();
 
-  const touch = event.touches[0]; // Get the first touch (assuming one finger)
+  const touch = event.touches[0] || event.changedTouches[0];; // Get the first touch (assuming one finger)
   const rect = gridContainer.getBoundingClientRect();
 
   const x = touch.clientX - rect.left;
