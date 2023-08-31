@@ -101,7 +101,7 @@ function draw(event) {
 
   const square = gridContainer.children[row * dimensionSize + col];
   if (square) {
-    square.style.backgroundColor = 'black';
+    square.style.backgroundColor = randomRGB();
   }
 }
 
