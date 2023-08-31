@@ -73,6 +73,43 @@ dimensionButton.addEventListener('click', () => {
 });
       
 
-gridContainer.addEventListener('touchmove', function (event){
-    event.preventDefault()
-})
+
+
+let ctx = gridContainer.getContext('2d');
+let squareSize = dimensionSize; // Adjust based on your grid size
+
+let isDrawing = false;
+
+gridContainer.addEventListener('touchstart', startDrawing);
+gridContainer.addEventListener('touchmove', draw);
+gridContainer.addEventListener('touchend', stopDrawing);
+
+function startDrawing(event) {
+  isDrawing = true;
+  draw(event); // Start drawing immediately on touchstart
+}
+
+function draw(event) {
+  if (!isDrawing) return;
+
+  event.preventDefault();
+
+  const touch = event.touches[0]; // Get the first touch (assuming one finger)
+  const rect = canvas.getBoundingClientRect();
+
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+  const col = Math.floor(x / squareSize);
+  const row = Math.floor(y / squareSize);
+
+  if (col >= 0 && col < gridContainer.width / squareSize &&
+      row >= 0 && row < gridContainer.height / squareSize) {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(col * squareSize, row * squareSize, squareSize, squareSize);
+  }
+}
+
+function stopDrawing() {
+  isDrawing = false;
+}
