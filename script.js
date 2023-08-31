@@ -85,9 +85,9 @@ function touch2Mouse(e)
 
   switch(e.type)
   {
-    case "touchstart": mouseEv="mousedown"; break;  
-    case "touchend":   mouseEv="mouseup"; break;
-    case "touchmove":  mouseEv="mousemove"; break;
+    case "touchstart": mouseEv="mouseover"; break;  
+    case "touchend":   mouseEv="mouseover"; break;
+    case "touchmove":  mouseEv="mouseover"; break;
     default: return;
   }
 
