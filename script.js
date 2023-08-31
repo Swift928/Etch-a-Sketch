@@ -42,33 +42,37 @@ resetButton.addEventListener('click', () => {
     })
 })
 
-  dimensionButton.addEventListener('click', () => {
-        dimensionSize = prompt(`Please enter a dimension you would like to see: `)
+dimensionButton.addEventListener('click', () => {
+    dimensionSize = prompt(`Please enter a dimension you would like to see: `)
 
-        while (dimensionSize !== null) {
-            if (dimensionSize >= 2 && dimensionSize <= 100) {
-                gridContainer.innerHTML = ''
-                gridContainer.style.gridTemplateColumns = `repeat(${dimensionSize}, 2fr)`
-                gridContainer.style.gridTemplateRows = `repeat(${dimensionSize}, 2fr)`                               
-    
-                for (i=0; i<dimensionSize; i++) {
-                    for (j=0; j<dimensionSize; j++) {
-                        var divColumns = document.createElement('div')
-                        divColumns.classList.add('etchElement');
-                        gridContainer.appendChild(divColumns)
+    while (dimensionSize !== null) {
+        if (dimensionSize >= 2 && dimensionSize <= 100) {
+            gridContainer.innerHTML = ''
+            gridContainer.style.gridTemplateColumns = `repeat(${dimensionSize}, 2fr)`
+            gridContainer.style.gridTemplateRows = `repeat(${dimensionSize}, 2fr)`                               
 
-                        divColumns.addEventListener('mouseover', (event) => {
-                            changeBackgroundColor(event.target); 
-                        });
-                    }} break;
-            } else if (dimensionSize > 100) {
-                alert('Please enter a number less than 101!')
-                dimensionSize = prompt(`Please enter a dimension you would like to see: `)
-            } else if (dimensionSize < 2)  {
-                alert('Please enter a number greater than 1!')
-                dimensionSize = prompt(`Please enter a dimension you would like to see: `)
-            } else { alert('Please enter only numbers.')
-                dimensionSize = prompt(`Please enter a dimension you would like to see: `)}
-        }
-        });
-        
+            for (i=0; i<dimensionSize; i++) {
+                for (j=0; j<dimensionSize; j++) {
+                    var divColumns = document.createElement('div')
+                    divColumns.classList.add('etchElement');
+                    gridContainer.appendChild(divColumns)
+
+                    divColumns.addEventListener('mouseover', (event) => {
+                        changeBackgroundColor(event.target); 
+                    });
+                }} break;
+        } else if (dimensionSize > 100) {
+            alert('Please enter a number less than 101!')
+            dimensionSize = prompt(`Please enter a dimension you would like to see: `)
+        } else if (dimensionSize < 2)  {
+            alert('Please enter a number greater than 1!')
+            dimensionSize = prompt(`Please enter a dimension you would like to see: `)
+        } else { alert('Please enter only numbers.')
+            dimensionSize = prompt(`Please enter a dimension you would like to see: `)}
+    }
+});
+      
+
+gridContainer.addEventListener('touchmove', function (event){
+    event.preventDefault()
+})
