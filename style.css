@@ -1,6 +1,6 @@
 /* Here I am making a 'var' variable to store the original color of the square. For reuse after the 'mouseover' event. */
 :root {
-    --original-color: rgb(100, 164, 176);   
+    --original-color: rgb(153, 185, 209);   
 }
 
 body,
@@ -19,22 +19,41 @@ html,
 }
 
 .header{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     padding-top: 20px;
     gap: 15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+}
+
+h1 {
+    color: #121213;
+    grid-column: span 2;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), -2px -2px 4px rgba(255, 255, 255, 0.5);
+
 }
 
 body {
-    background-color: rgb(74, 99, 68);
+    background-color: rgb(126, 167, 116);
 }
 
 button {
-    background-color: rgb(173, 189, 169);
+    background-color: transparent;
     border-radius: 8px;
-    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid #090a09;
     padding: 8px 20px;
     font-size: 20px;
     font-weight: 100;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #65823b;
+    transform: scale(1.05);
 }
 
 #etchContainer{
@@ -51,6 +70,7 @@ button {
    background-color: var(--original-color);  /* Here the variable is in use */
    height: 100%;
    width: 100%;
+   cursor: pointer;
 }
 
 @media (max-width: 750px) or (max-height: 500px) {

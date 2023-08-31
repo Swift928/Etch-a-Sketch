@@ -60,7 +60,8 @@ dimensionButton.addEventListener('click', () => {
                     divColumns.addEventListener('mouseover', (event) => {
                         changeBackgroundColor(event.target); 
                     });
-                }} break;
+                }
+            } break;
         } else if (dimensionSize > 100) {
             alert('Please enter a number less than 101!')
             dimensionSize = prompt(`Please enter a dimension you would like to see: `)
@@ -73,27 +74,19 @@ dimensionButton.addEventListener('click', () => {
 });
       
 
-gridContainer.addEventListener("touchstart", touch2Mouse, true);
-gridContainer.addEventListener("touchmove", touch2Mouse, true);
-gridContainer.addEventListener("touchend", touch2Mouse, true);
 
-
-function touch2Mouse(e)
-{
-  var theTouch = e.changedTouches[0];
-  var mouseEv;
-
-  switch(e.type)
-  {
-    case "touchstart": mouseEv="mouseover"; break;  
-    case "touchend":   mouseEv="mouseover"; break;
-    case "touchmove":  mouseEv="mouseover"; break;
-    default: return;
-  }
-
-  var mouseEvent = document.createEvent("MouseEvent");
-  mouseEvent.initMouseEvent(mouseEv, true, true, window, 1, theTouch.screenX, theTouch.screenY, theTouch.clientX, theTouch.clientY, false, false, false, false, 0, null);
-  theTouch.target.dispatchEvent(mouseEvent);
-
-  e.preventDefault();
-}
+// Here I add the touchmove event listener so that when played on a mobile device
+// the user can drag their finger, just like a mouse on a computer, and get the same result.
+document.addEventListener('DOMContentLoaded', () => {
+    
+    gridContainer.addEventListener('touchmove', e => {
+        e.preventDefault()
+    
+    let touchedElements = document.elementsFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+        
+        for (let element of touchedElements) {
+            if (element.classList.contains('etchElement')) {
+                element.style.backgroundColor = randomRGB();
+            }}
+    })
+    })
