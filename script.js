@@ -73,11 +73,7 @@ dimensionButton.addEventListener('click', () => {
 });
       
 
-
-
-let ctx = gridContainer.getContext('2d');
-let squareSize = dimensionSize; // Adjust based on your grid size
-
+let squareSize = dimensionSize;
 let isDrawing = false;
 
 gridContainer.addEventListener('touchstart', startDrawing);
@@ -95,7 +91,7 @@ function draw(event) {
   event.preventDefault();
 
   const touch = event.touches[0]; // Get the first touch (assuming one finger)
-  const rect = canvas.getBoundingClientRect();
+  const rect = gridContainer.getBoundingClientRect();
 
   const x = touch.clientX - rect.left;
   const y = touch.clientY - rect.top;
@@ -103,10 +99,9 @@ function draw(event) {
   const col = Math.floor(x / squareSize);
   const row = Math.floor(y / squareSize);
 
-  if (col >= 0 && col < gridContainer.width / squareSize &&
-      row >= 0 && row < gridContainer.height / squareSize) {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(col * squareSize, row * squareSize, squareSize, squareSize);
+  const square = gridContainer.children[row * dimensionSize + col];
+  if (square) {
+    square.style.backgroundColor = 'black';
   }
 }
 
