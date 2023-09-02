@@ -40,9 +40,9 @@ body {
     background-color: rgb(126, 167, 116);
 }
 
-button {
+/* button {
     all: initial;
-}
+} */
 
 button {
     background-color: transparent;
